@@ -2,7 +2,8 @@
 <?php
 
 
-    $sql = "SELECT * FROM gallery";
+
+    $sql = "SELECT * FROM gallery WHERE id = " . $_GET['id'];
         
         $result = $mysqli->query($sql); //send this query to the datatbase
         
@@ -12,19 +13,14 @@
         //loop through the results
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) { //keep looping rows
-            // printf(
             //     "Id: %s, Title: %s, Author: %s, <br />", 
-                // $row["id"], 
-                // $row["src"], 
-                // $row["thumbnail"],
-                // $row["name"]);       
+               echo $row["id"]; 
+               echo $row["src"]; 
+               echo $row["thumbnail"];
+               echo $row["name"];       
                 ?>
-                <li>
-                    <a href="/?page=showroom&id=<?php echo $row["id"];?>">
-                        <img src="<?php echo $row["thumbnail"];?>">
-                    </a>
-                    <p><?php echo $row["name"];?> </p>
-                </li>
+                <h2><?php echo $row['name']; ?></h2>
+                <img src="<?php echo $row['src']; ?>">
                 <?php
             }
         } else {
